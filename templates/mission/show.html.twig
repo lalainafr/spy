@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Délai d'une mission{% endblock %}
+
+{% block body %}
+<h1>Détail de la mission - <b>{{ mission.title | upper }}</b>...</h1>
+
+Vous trouvez dans cette page les détails de la mission
+
+<hr>
+<b>
+    <p>Titre de la mission</p>
+</b>
+{{ mission.title}} <br><br>
+<b>
+    <p>Description de la mission</p>
+</b>
+<small>{{ mission.description }}</small> <br><br>
+<b>
+    <p>Nom de l'agent concerné par la mission</p>
+</b>
+{% for agent in agents %}
+<ul>
+    <li>
+        {{ agent.fullName}}
+    </li>
+</ul>
+{% endfor %}
+
+
+<a href="{{ path('app_mission')}}">Retour</a>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des missions{% endblock %}
+
+{% block body %}
+<h1>Liste des missions</h1>
+
+Vous trouverez la liste des missions dans cette page <br><br>
+<div class="float-right"> Merci de <a href="{{ path('app_mission_add')}}">cliquer ici</a> pour ajouter une mission</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Titre la la mission</th>
+            <th scope="col">Déscription de la mission</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    {% for mission in missionList %}
+    <tbody>
+        <tr>
+
+            <td>{{ mission.title}}</td>
+            <td>{{ mission.description}}</td>
+            <td>
+                <a href="{{ path('app_mission_show', {'id': mission.id})}}">Détail</a>
+                <a href="{{ path('app_mission_edit', {'id': mission.id})}}">Modifier</a>
+                <a href="{{ path('app_mission_delete', {'id': mission.id})}}">Supprimer</a>
+            </td>
+        </tr>
+    </tbody>
+    {% endfor %}
+    </tabl>
+
+    {% endblock %}
