@@ -34,6 +34,11 @@ class Mission
      */
     private $agent;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Code::class, inversedBy="missions")
+     */
+    private $code;
+
     public function __construct()
     {
         $this->agent = new ArrayCollection();
@@ -88,6 +93,18 @@ class Mission
     public function removeAgent(Agent $agent): self
     {
         $this->agent->removeElement($agent);
+
+        return $this;
+    }
+
+    public function getCode(): ?Code
+    {
+        return $this->code;
+    }
+
+    public function setCode(?Code $code): self
+    {
+        $this->code = $code;
 
         return $this;
     }
