@@ -2,7 +2,6 @@
 
 namespace App\Form;
 
-use App\Entity\Code;
 use App\Entity\Agent;
 use App\Entity\Mission;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -25,11 +24,6 @@ class MissionType extends AbstractType
                 'multiple' => true,
                 'expanded' => true
 
-            ])
-            ->add('code', EntityType::class, [
-                'label' => 'Nom de code',
-                'choice_label' => 'name',
-                'class' => Code::class,
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Valider',

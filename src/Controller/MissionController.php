@@ -49,12 +49,10 @@ class MissionController extends AbstractController
     {
         $mission = $missionRepository->findOneById($id);
         $agents = $mission->getAgent();
-        $code = $mission->getCode();
 
         return $this->render('mission/show.html.twig', [
             'mission' => $mission,
-            'agents' => $agents,
-            'code' => $code
+            'agents' => $agents
         ]);
     }
     /**
