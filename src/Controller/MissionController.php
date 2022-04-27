@@ -7,11 +7,15 @@ use App\Form\MissionType;
 use App\Form\MissionChoiceType;
 use App\Repository\MissionRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 
 class MissionController extends AbstractController
 {
@@ -63,6 +67,7 @@ class MissionController extends AbstractController
      */
     public function edit(MissionRepository $missionRepository, Request $request, EntityManagerInterface $em): Response
     {
+
         $searchForm = $this->createForm(MissionChoiceType::class);
         $searchForm->handleRequest($request);
         $req = $request->request->get('mission_choice');
@@ -75,6 +80,7 @@ class MissionController extends AbstractController
 
             return $this->redirectToRoute('app_mission');
         }
+
         return $this->render('mission/edit.html.twig', [
             'searchForm' => $searchForm->createView(),
             'editForm' => $editForm->createView(),

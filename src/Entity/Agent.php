@@ -50,9 +50,15 @@ class Agent
      */
     private $missions;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Speciality::class, inversedBy="agents")
+     */
+    private $speciality;
+
     public function __construct()
     {
         $this->missions = new ArrayCollection();
+        $this->speciality = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -131,6 +137,30 @@ class Agent
         if ($this->missions->removeElement($mission)) {
             $mission->removeAgent($this);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Speciality>
+     */
+    public function getSpeciality(): Collection
+    {
+        return $this->speciality;
+    }
+
+    public function addSpeciality(Speciality $speciality): self
+    {
+        if (!$this->speciality->contains($speciality)) {
+            $this->speciality[] = $speciality;
+        }
+
+        return $this;
+    }
+
+    public function removeSpeciality(Speciality $speciality): self
+    {
+        $this->speciality->removeElement($speciality);
 
         return $this;
     }

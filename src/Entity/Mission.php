@@ -34,6 +34,11 @@ class Mission
      */
     private $agent;
 
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
+
     public function __construct()
     {
         $this->agent = new ArrayCollection();

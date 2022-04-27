@@ -20,9 +20,11 @@ class AgentController extends AbstractController
     {
         $agentList = $agentRepository->findAll();
         return $this->render('agent/index.html.twig', [
-            'agentList' => $agentList
+            'agentList' => $agentList,
         ]);
     }
+
+
 
     /**
      * @Route("/agent/add", name="app_agent_add")

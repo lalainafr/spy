@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des specilaités{% endblock %}
+
+{% block body %}
+<div>
+    <h1>Liste des spécialités</h1>
+
+    Vous trouverez la liste des spécialités dans cette page
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Nom de la spécialité</th>
+                {# <th scope="col">Action</th> #}
+            </tr>
+        </thead>
+        {% for speciality in specialitiesList %}
+        <tbody>
+            <tr>
+
+                <td>{{ speciality.name}}</td>
+                {# <td>
+                    <a href="{{ path('app_speciality_show', {'id': speciality.id})}}">Détail</a>
+                </td> #}
+            </tr>
+        </tbody>
+        {% endfor %}
+        </tabl>
+</div>
+
+{% endblock %}

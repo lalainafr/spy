@@ -7,9 +7,7 @@
 
 Vous trouverez dans cette page la liste des agents disponibles
 
-<div class="float-right"> Merci de <a href="{{ path('app_agent_add')}}">cliquer ici</a> pour ajouter un agent</div>
 
-<hr>
 
 <table class="table">
     <thead>
@@ -24,7 +22,6 @@ Vous trouverez dans cette page la liste des agents disponibles
     {% for agent in agentList %}
     <tbody>
         <tr>
-
             <td>{{ agent.firstName}}</td>
             <td>{{ agent.lastName}}</td>
             <td>{{ agent.brithDate | date('d-m-Y')}}</td>
@@ -37,6 +34,6 @@ Vous trouverez dans cette page la liste des agents disponibles
     </tbody>
     {% endfor %}
     </tabl>
-    <hr>
+
 
     {% endblock %}
