@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détail de l'agent{% endblock %}
+
+{% block body %}
+<h1>Détail de l'agent - <b>{{ agent.firstName | upper }}</b>...</h1>
+
+Vous trouvez dans cette page les détails de l'agent
+
+<hr>
+
+<b>
+    <p>Prenom de l'agent</p>
+</b>
+{{ agent.firstName}} <br><br>
+<b>
+    <p>Nom de l'agent</p>
+</b>
+{{ agent.lastName}} <br><br>
+<b>
+    <p>Date de naissance</p>
+</b>
+{{ agent.brithDate | date("m/d/Y")}}<br><br>
+<b>
+    <p>Speciality</p>
+</b>
+{% for speciality in specialities %}
+<ul>
+    <li>
+        {{ speciality.name}}
+    </li>
+</ul>
+{% endfor %}
+<b>
+    <p>Nationalité</p>
+</b>
+{{ agent.nationality}} <br><br>
+
+
+<a href="{{ path('app_mission')}}">Retour</a>
+{% endblock %}

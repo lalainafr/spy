@@ -56,36 +56,34 @@ class MissionController extends AbstractController
     {
         $mission = $missionRepository->findOneById($id);
         $agents = $mission->getAgent();
+        $speciality = $mission->getSpeciality();
 
         return $this->render('mission/show.html.twig', [
             'mission' => $mission,
-            'agents' => $agents
+            'agents' => $agents,
+            'speciality' => $speciality
         ]);
     }
     /**
-     * @Route("/mission/edit", name="app_mission_edit")
+     * @Route("/mission/edit/{id}", name="app_mission_edit")
      */
-    public function edit(MissionRepository $missionRepository, Request $request, EntityManagerInterface $em): Response
+    public function edit($id, MissionRepository $missionRepository, Request $request, EntityManagerInterface $em): Response
     {
 
-        $searchForm = $this->createForm(MissionChoiceType::class);
-        $searchForm->handleRequest($request);
-        $req = $request->request->get('mission_choice');
-        $id = $req['mission'];
         $mission = $missionRepository->findOneById($id);
-        $editForm = $this->createForm(MissionType::class, $mission);
-        $editForm->handleRequest($request);
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
+        $form = $this->createForm(MissionType::class, $mission);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
-
             return $this->redirectToRoute('app_mission');
         }
 
         return $this->render('mission/edit.html.twig', [
-            'searchForm' => $searchForm->createView(),
-            'editForm' => $editForm->createView(),
+            'form' => $form->createView(),
         ]);
     }
+
+
     /**
      * @Route("/mission/delete", name="app_mission_delete")
      */

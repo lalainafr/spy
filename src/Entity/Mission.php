@@ -34,6 +34,11 @@ class Mission
      */
     private $agent;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Speciality::class, inversedBy="missions")
+     */
+    private $speciality;
+
     public function __toString()
     {
         return $this->getTitle();
@@ -93,6 +98,18 @@ class Mission
     public function removeAgent(Agent $agent): self
     {
         $this->agent->removeElement($agent);
+
+        return $this;
+    }
+
+    public function getSpeciality(): ?Speciality
+    {
+        return $this->speciality;
+    }
+
+    public function setSpeciality(?Speciality $speciality): self
+    {
+        $this->speciality = $speciality;
 
         return $this;
     }

@@ -6,10 +6,10 @@ use App\Entity\Agent;
 use App\Form\AgentType;
 use App\Repository\AgentRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AgentController extends AbstractController
 {
@@ -23,8 +23,6 @@ class AgentController extends AbstractController
             'agentList' => $agentList,
         ]);
     }
-
-
 
     /**
      * @Route("/agent/add", name="app_agent_add")
@@ -44,10 +42,12 @@ class AgentController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+
     /**
      * @Route("/agent/edit/{id}", name="app_agent_edit")
      */
-    public function edit(Request $request, EntityManagerInterface $em, $id, AgentRepository $agentRepository): Response
+    public function edit(Request $request, $id, EntityManagerInterface $em, AgentRepository $agentRepository): Response
     {
         $agent = $agentRepository->findOneById($id);
         $form = $this->createForm(AgentType::class, $agent);
@@ -58,7 +58,21 @@ class AgentController extends AbstractController
         }
 
         return $this->render('agent/edit.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/agent/show/{id}", name="app_agent_show")
+     */
+    public function show(Request $request, EntityManagerInterface $em, $id, AgentRepository $agentRepository): Response
+    {
+        $agent = $agentRepository->findOneById($id);
+        $specialities =  $agent->getSpeciality();
+
+        return $this->render('agent/show.html.twig', [
+            'agent' => $agent,
+            'specialities' => $specialities
         ]);
     }
     /**
