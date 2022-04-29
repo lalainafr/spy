@@ -20,17 +20,22 @@ Vous trouvez dans cette page les détails de la mission
     <p>Nom de l'agent concerné par la mission</p>
 </b>
 {% for agent in agents %}
+{% if agent %}
 <ul>
     <li>
         {{ agent.fullName}}
     </li>
 </ul>
+{% endif %}
 {% endfor %}
+
+{% if speciality %}
 <b>
     <p>Specialité demandées</p>
 </b>
 {{ speciality.name}} <br><br>
 
+{% endif %}
 
 <a href="{{ path('app_mission')}}">Retour</a>
 {% endblock %}

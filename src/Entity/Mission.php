@@ -36,6 +36,7 @@ class Mission
 
     /**
      * @ORM\ManyToOne(targetEntity=Speciality::class, inversedBy="missions")
+     * @ORM\JoinColumn(name="speciality_id", referencedColumnName="id", nullable=true,onDelete="SET NULL")
      */
     private $speciality;
 
