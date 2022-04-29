@@ -50,6 +50,11 @@ class Mission
      */
     private $type;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Status::class, inversedBy="missions")
+     */
+    private $status;
+
     public function __toString()
     {
         return $this->getTitle();
@@ -158,6 +163,18 @@ class Mission
     public function setType(?Type $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getStatus(): ?Status
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?Status $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }

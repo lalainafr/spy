@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Type;
 use App\Entity\Agent;
+use App\Entity\Status;
 use App\Entity\Target;
 use App\Entity\Mission;
 use App\Entity\Speciality;
@@ -50,6 +51,12 @@ class MissionType extends AbstractType
                 'placeholder' => 'Choisir un type de mission',
                 'choice_label' => 'name',
                 'class' => Type::class,
+            ])
+            ->add('status', EntityType::class, [
+                'label' => 'Statut de la mission',
+                'placeholder' => 'Choisir un statut de mission',
+                'choice_label' => 'name',
+                'class' => Status::class,
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Valider',

@@ -66,6 +66,15 @@ Vous trouvez dans cette page les détails de la mission
 ...
 {% endif %}
 
+<b>
+    <p>Statut de la mission</p>
+</b>
+{% if status %}
+{{ status.name}} <br>
+{% else %}
+...
+{% endif %}
+
 <br><br>
 
 <a href="{{ path('app_mission')}}">Retour</a>
