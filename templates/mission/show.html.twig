@@ -32,20 +32,41 @@ Vous trouvez dans cette page les détails de la mission
 <b>
     <p>Nom de(s) cible(s)</p>
 </b>
+{% if targets %}
 {% for target in targets %}
 <ul>
     <li>
         {{ target.fullName}}
     </li>
 </ul>
+{% else %}
+...
 {% endfor %}
+{% endif %}
 
 
 
 <b>
     <p>Specialité(s) demandée(s)</p>
 </b>
-{{ speciality.name}} <br><br>
+
+{% if type %}
+{{ speciality.name}} <br>
+{% else %}
+...
+{% endif %}
+
+
+<b>
+    <p>Type de la mission</p>
+</b>
+{% if type %}
+{{ type.name}} <br>
+{% else %}
+...
+{% endif %}
+
+<br><br>
 
 <a href="{{ path('app_mission')}}">Retour</a>
 {% endblock %}

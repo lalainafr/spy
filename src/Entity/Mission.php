@@ -45,6 +45,11 @@ class Mission
      */
     private $target;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Type::class, inversedBy="missions")
+     */
+    private $type;
+
     public function __toString()
     {
         return $this->getTitle();
@@ -141,6 +146,18 @@ class Mission
     public function removeTarget(Target $target): self
     {
         $this->target->removeElement($target);
+
+        return $this;
+    }
+
+    public function getType(): ?Type
+    {
+        return $this->type;
+    }
+
+    public function setType(?Type $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }

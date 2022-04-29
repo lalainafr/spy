@@ -58,12 +58,14 @@ class MissionController extends AbstractController
         $agents = $mission->getAgent();
         $speciality = $mission->getSpeciality();
         $targets = $mission->getTarget();
+        $type = $mission->getType();
 
         return $this->render('mission/show.html.twig', [
             'mission' => $mission,
             'agents' => $agents,
             'speciality' => $speciality,
-            'targets' => $targets
+            'targets' => $targets,
+            'type' => $type
         ]);
     }
     /**

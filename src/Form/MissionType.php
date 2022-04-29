@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Type;
 use App\Entity\Agent;
 use App\Entity\Target;
 use App\Entity\Mission;
@@ -25,21 +26,30 @@ class MissionType extends AbstractType
             ->add('agent', EntityType::class, [
                 'label' => 'Liste des agents',
                 'choice_label' => 'fullName',
+                'placeholder' => 'Choisir un agent',
                 'class' => Agent::class,
                 'multiple' => true,
                 'expanded' => true
             ])
             ->add('speciality', EntityType::class, [
                 'label' => 'Specialité',
+                'placeholder' => 'Choisir une spécialité',
                 'choice_label' => 'name',
                 'class' => Speciality::class,
             ])
             ->add('target', EntityType::class, [
                 'label' => 'Liste des cibles',
+                'placeholder' => 'Choisir une cible',
                 'choice_label' => 'fullName',
                 'class' => Target::class,
                 'multiple' => true,
                 'expanded' => true
+            ])
+            ->add('type', EntityType::class, [
+                'label' => 'Type de la mission',
+                'placeholder' => 'Choisir un type de mission',
+                'choice_label' => 'name',
+                'class' => Type::class,
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Valider',
