@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Agent;
 use App\Form\AgentType;
+use App\Form\AgentChoiceType;
 use App\Repository\AgentRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -76,13 +77,22 @@ class AgentController extends AbstractController
         ]);
     }
     /**
-     * @Route("/agent/delete/{id}", name="app_agent_delete")
+     * @Route("/agent/delete", name="app_agent_delete")
      */
-    public function delete(EntityManagerInterface $em, $id, AgentRepository $agentRepository): Response
+    public function delete(EntityManagerInterface $em, AgentRepository $agentRepository, Request $request): Response
     {
-        $agent = $agentRepository->findOneById($id);
-        $em->remove($agent);
-        $em->flush();
-        return $this->redirectToRoute('app_agent');
+        $searchForm = $this->createForm(AgentChoiceType::class);
+        $searchForm->handleRequest($request);
+        if ($searchForm->isSubmitted() && $searchForm->isValid()) {
+            $data = $searchForm->getData();
+            $agentId = $data['agent']->getId();
+            $agentDelete = $agentRepository->findOneById($agentId);
+            $em->remove($agentDelete);
+            $em->flush();
+            return $this->redirectToRoute('app_agent');
+        }
+        return $this->render('agent/choice_delete.html.twig', [
+            'searcForm' => $searchForm->createView()
+        ]);
     }
 }

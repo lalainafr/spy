@@ -29,6 +29,10 @@ class Agent
      */
     private $lastName;
 
+    public function __toString()
+    {
+        return $this->fullName();
+    }
 
     public function fullName()
     {
