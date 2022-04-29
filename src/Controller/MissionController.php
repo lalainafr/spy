@@ -21,7 +21,7 @@ class MissionController extends AbstractController
 {
 
     /**
-     * @Route("/mission", name="app_mission")
+     * @Route("/", name="app_mission")
      */
     public function index(MissionRepository $missionRepository): Response
     {
@@ -57,11 +57,13 @@ class MissionController extends AbstractController
         $mission = $missionRepository->findOneById($id);
         $agents = $mission->getAgent();
         $speciality = $mission->getSpeciality();
+        $targets = $mission->getTarget();
 
         return $this->render('mission/show.html.twig', [
             'mission' => $mission,
             'agents' => $agents,
-            'speciality' => $speciality
+            'speciality' => $speciality,
+            'targets' => $targets
         ]);
     }
     /**

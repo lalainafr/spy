@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Agent;
+use App\Entity\Target;
 use App\Entity\Mission;
 use App\Entity\Speciality;
 use Symfony\Component\Form\FormEvent;
@@ -23,7 +24,7 @@ class MissionType extends AbstractType
             ->add('description')
             ->add('agent', EntityType::class, [
                 'label' => 'Liste des agents',
-                'choice_label' => 'firstName',
+                'choice_label' => 'fullName',
                 'class' => Agent::class,
                 'multiple' => true,
                 'expanded' => true
@@ -32,6 +33,13 @@ class MissionType extends AbstractType
                 'label' => 'Specialité',
                 'choice_label' => 'name',
                 'class' => Speciality::class,
+            ])
+            ->add('target', EntityType::class, [
+                'label' => 'Liste des cibles',
+                'choice_label' => 'fullName',
+                'class' => Target::class,
+                'multiple' => true,
+                'expanded' => true
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Valider',
