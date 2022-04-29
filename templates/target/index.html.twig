@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des cibles!{% endblock %}
+
+{% block body %}
+<h1> Liste des cibles</h1>
+
+Vous trouverez dans cette page la liste des cibles disponibles
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Prénom</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Date de Naissance</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    {% for target in targets %}
+    <tbody>
+        <tr>
+            <td>{{ target.firstName}}</td>
+            <td>{{ target.lastName}}</td>
+            <td>{{ target.birthDate | date('d-m-Y')}}</td>
+            <td><a href="{{ path('app_target_edit', {'id': target.id})}}">Modifier</a></td>
+
+        </tr>
+    </tbody>
+    {% endfor %}
+    </tabl>
+
+
+    {% endblock %}

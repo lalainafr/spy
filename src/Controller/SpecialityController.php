@@ -81,7 +81,7 @@ class SpecialityController extends AbstractController
             return $this->redirectToRoute('app_speciality');
         }
 
-        return $this->render('mission/choice_delete.html.twig', [
+        return $this->render('speciality/choice_delete.html.twig', [
             'searcForm' => $searchForm->createView()
         ]);
     }

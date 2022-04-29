@@ -33,6 +33,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
+                    <!-- Mission header -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -45,6 +46,7 @@
                             <a class="dropdown-item" href="{{ path('app_mission_delete')}}">Supprimer</a>
                         </div>
                     </li>
+                    <!-- Agent header -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -56,6 +58,7 @@
                             <a class="dropdown-item" href="{{ path('app_agent_delete')}}">Supprimer</a>
                         </div>
                     </li>
+                    <!-- Speciality header -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -65,6 +68,18 @@
                             <a class="dropdown-item" href="{{ path('app_speciality')}}">Afficher</a>
                             <a class="dropdown-item" href="{{ path('app_speciality_add')}}">Ajouter</a>
                             <a class="dropdown-item" href="{{ path('app_speciality_delete')}}">Supprimer</a>
+                        </div>
+                    </li>
+                    <!-- Target header -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Cible
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="{{ path('app_target')}}">Afficher</a>
+                            <a class="dropdown-item" href="{{ path('app_target_add')}}">Ajouter</a>
+                            <a class="dropdown-item" href="{{ path('app_target_delete')}}">Supprimer</a>
                         </div>
                     </li>
                 </ul>
