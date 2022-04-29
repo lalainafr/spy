@@ -94,6 +94,18 @@
                             <a class="dropdown-item" href="{{ path('app_type_delete')}}">Supprimer</a>
                         </div>
                     </li>
+                    <!--  Mission Status header -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Statut de mission
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="{{ path('app_status')}}">Afficher</a>
+                            <a class="dropdown-item" href="{{ path('app_status_add')}}">Ajouter</a>
+                            <a class="dropdown-item" href="{{ path('app_status_delete')}}">Supprimer</a>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </nav>

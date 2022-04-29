@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste de statut des missions!{% endblock %}
+
+{% block body %}
+<h1> Liste de status de missions</h1>
+
+Vous trouverez dans cette page la liste de statut de mission disponible
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nom du statut</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    {% for statut in status %}
+    <tbody>
+        <tr>
+            <td>{{ statut.name }}</td>
+            <td><a href="{{ path('app_status_edit', {'id': statut.id})}}">Modifier</a></td>
+
+        </tr>
+    </tbody>
+    {% endfor %}
+    </tabl>
+
+
+    {% endblock %}

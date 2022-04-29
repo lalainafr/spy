@@ -70,8 +70,8 @@ class TypeController extends AbstractController
         $searchForm->handleRequest($request);
         if ($searchForm->isSubmitted() && $searchForm->isValid()) {
             $data = $searchForm->getData();
-            $targetId = $data['target']->getId();
-            $typeDelete = $typeRepository->findOneById($targetId);
+            $typeId = $data['target']->getId();
+            $typeDelete = $typeRepository->findOneById($typeId);
             $em->remove($typeDelete);
             $em->flush();
             return $this->redirectToRoute('app_type');
