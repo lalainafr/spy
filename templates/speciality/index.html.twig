@@ -20,9 +20,9 @@
             <tr>
 
                 <td>{{ speciality.name}}</td>
-                {# <td>
-                    <a href="{{ path('app_speciality_show', {'id': speciality.id})}}">Détail</a>
-                </td> #}
+                <td>
+                    <a href="{{ path('app_speciality_edit', {'id': speciality.id})}}">Modifier</a>
+                </td>
             </tr>
         </tbody>
         {% endfor %}
