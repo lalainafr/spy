@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste de type de mission{% endblock %}
+
+{% block body %}
+<div>
+    <h1>Liste de type de mission</h1>
+
+    Vous trouverez la liste de type de mission dans cette page
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Nom de la mission</th>
+                {# <th scope="col">Action</th> #}
+            </tr>
+        </thead>
+        {% for type in types %}
+        <tbody>
+            <tr>
+
+                <td>{{ type.name}}</td>
+                <td>
+                    <a href="{{ path('app_type_edit', {'id': type.id})}}">Modifier</a>
+                </td>
+            </tr>
+        </tbody>
+        {% endfor %}
+        </tabl>
+</div>
+
+{% endblock %}
