@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Type;
 use App\Entity\Agent;
+use App\Entity\Hideout;
 use App\Entity\Status;
 use App\Entity\Target;
 use App\Entity\Mission;
@@ -43,6 +44,13 @@ class MissionType extends AbstractType
                 'placeholder' => 'Choisir une cible',
                 'choice_label' => 'fullName',
                 'class' => Target::class,
+                'multiple' => true,
+                'expanded' => true
+            ])
+            ->add('hideout', EntityType::class, [
+                'label' => 'Planque',
+                'placeholder' => 'Choisir une planque',
+                'class' => Hideout::class,
                 'multiple' => true,
                 'expanded' => true
             ])

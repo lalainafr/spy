@@ -55,6 +55,11 @@ class Mission
      */
     private $status;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Hideout::class, inversedBy="missions")
+     */
+    private $Hideout;
+
     public function __toString()
     {
         return $this->getTitle();
@@ -64,6 +69,7 @@ class Mission
     {
         $this->agent = new ArrayCollection();
         $this->target = new ArrayCollection();
+        $this->Hideout = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -175,6 +181,30 @@ class Mission
     public function setStatus(?Status $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Hideout>
+     */
+    public function getHideout(): Collection
+    {
+        return $this->Hideout;
+    }
+
+    public function addHideout(Hideout $hideout): self
+    {
+        if (!$this->Hideout->contains($hideout)) {
+            $this->Hideout[] = $hideout;
+        }
+
+        return $this;
+    }
+
+    public function removeHideout(Hideout $hideout): self
+    {
+        $this->Hideout->removeElement($hideout);
 
         return $this;
     }

@@ -44,6 +44,22 @@ Vous trouvez dans cette page les détails de la mission
 {% endfor %}
 {% endif %}
 
+<b>
+    <p>Nom de(s) planque(s)</p>
+</b>
+{% if hideouts %}
+{% for hideout in hideouts %}
+<ul>
+    <li>
+        {{ hideout.code}}
+        {{ hideout.address}}
+    </li>
+</ul>
+{% else %}
+...
+{% endfor %}
+{% endif %}
+
 
 
 <b>

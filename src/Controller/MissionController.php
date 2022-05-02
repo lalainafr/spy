@@ -60,6 +60,8 @@ class MissionController extends AbstractController
         $targets = $mission->getTarget();
         $type = $mission->getType();
         $status = $mission->getStatus();
+        $hideouts = $mission->getHideout();
+
 
         return $this->render('mission/show.html.twig', [
             'mission' => $mission,
@@ -67,7 +69,8 @@ class MissionController extends AbstractController
             'speciality' => $speciality,
             'targets' => $targets,
             'type' => $type,
-            'status' => $status
+            'status' => $status,
+            'hideouts' =>  $hideouts
         ]);
     }
     /**
