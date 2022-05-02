@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste de type de planque{% endblock %}
+
+{% block body %}
+<div>
+    <h1>Liste de type de planque</h1>
+
+    Vous trouverez la liste de type de planque dans cette page
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Nom de la planque</th>
+                <th scope="col">Adresse de la planque</th>
+                <th scope="col">Type de la planque</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        {% for hideout in hideouts %}
+        <tbody>
+            <tr>
+
+                <td>{{ hideout.code}}</td>
+                <td>{{ hideout.address}}</td>
+                <td>{{ hideout.type}}</td>
+                <td>
+                    <a href="{{ path('app_hideout_edit', {'id': hideout.id})}}">Modifier</a>
+                </td>
+            </tr>
+        </tbody>
+        {% endfor %}
+        </tabl>
+</div>
+
+{% endblock %}

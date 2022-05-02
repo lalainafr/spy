@@ -74,6 +74,7 @@ class SpecialityController extends AbstractController
         $searchForm->handleRequest($request);
         if ($searchForm->isSubmitted() && $searchForm->isValid()) {
             $speciality = $searchForm->getData();
+            dd($speciality);
             $specialityId = $speciality['speciality']->getId();
             $deleteMission = $specialityRepository->findOneById($specialityId);
             $em->remove($deleteMission);

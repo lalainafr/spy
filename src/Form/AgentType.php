@@ -28,7 +28,7 @@ class AgentType extends AbstractType
                 'expanded' => true,
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Liste des agents',
+                'label' => 'Valider',
                 'attr' => [
                     'class' => 'btn btn-block btn-info'
                 ]
