@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste de contact{% endblock %}
+
+{% block body %}
+<div>
+    <h1>Liste de contact</h1>
+
+    Vous trouverez la liste de contact dans cette page
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Nom </th>
+                <th scope="col">Prénom </th>
+                <th scope="col">Anniversaire</th>
+                <th scope="col">Nom de code </th>
+                scope="col">Action</th> #}
+            </tr>
+        </thead>
+        {% for contact in contacts %}
+        <tbody>
+            <tr>
+                <td>{{ contact.firstName}}</td>
+                <td>{{ contact.lastName}}</td>
+                <td>{{ contact.birthDate | date('d-m-Y') }}</td>
+                <td>{{ contact.codeName}}</td>
+                <td>
+                    <a href="{{ path('app_contact_edit', {'id': contact.id})}}">Modifier</a>
+                </td>
+            </tr>
+        </tbody>
+        {% endfor %}
+        </tabl>
+</div>
+
+{% endblock %}
