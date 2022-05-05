@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Country;
 use App\Entity\Target;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -17,6 +19,11 @@ class TargetType extends AbstractType
             ->add('firstName')
             ->add('lastName')
             ->add('birthDate', DateTimeType::class, ['widget' => 'single_text'])
+            ->add('country', EntityType::class, [
+                'class' => Country::class,
+                'label' => 'Nationalité',
+                'placeholder' => 'Choisir la nationalité'
+            ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Valider',
                 'attr' => [

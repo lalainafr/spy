@@ -39,6 +39,12 @@ class Target
      */
     private $missions;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Country::class, inversedBy="targets")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $country;
+
     public function __construct()
     {
         $this->missions = new ArrayCollection();
@@ -118,6 +124,18 @@ class Target
         if ($this->missions->removeElement($mission)) {
             $mission->removeTarget($this);
         }
+
+        return $this;
+    }
+
+    public function getCountry(): ?Country
+    {
+        return $this->country;
+    }
+
+    public function setCountry(?Country $country): self
+    {
+        $this->country = $country;
 
         return $this;
     }
