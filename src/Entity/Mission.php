@@ -65,6 +65,11 @@ class Mission
      */
     private $country;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Contact::class, inversedBy="missions")
+     */
+    private $contact;
+
     public function __toString()
     {
         return $this->getTitle();
@@ -75,6 +80,7 @@ class Mission
         $this->agent = new ArrayCollection();
         $this->target = new ArrayCollection();
         $this->Hideout = new ArrayCollection();
+        $this->contact = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -222,6 +228,30 @@ class Mission
     public function setCountry(?Country $country): self
     {
         $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Contact>
+     */
+    public function getContact(): Collection
+    {
+        return $this->contact;
+    }
+
+    public function addContact(Contact $contact): self
+    {
+        if (!$this->contact->contains($contact)) {
+            $this->contact[] = $contact;
+        }
+
+        return $this;
+    }
+
+    public function removeContact(Contact $contact): self
+    {
+        $this->contact->removeElement($contact);
 
         return $this;
     }

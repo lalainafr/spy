@@ -62,6 +62,7 @@ class MissionController extends AbstractController
         $status = $mission->getStatus();
         $hideouts = $mission->getHideout();
         $country = $mission->getCountry();
+        $contacts = $mission->getContact();
 
 
         return $this->render('mission/show.html.twig', [
@@ -72,7 +73,9 @@ class MissionController extends AbstractController
             'type' => $type,
             'status' => $status,
             'hideouts' =>  $hideouts,
-            'country' => $country
+            'country' => $country,
+            'contacts' => $contacts
+
         ]);
     }
     /**

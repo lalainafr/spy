@@ -94,6 +94,21 @@ Vous trouvez dans cette page les détails de la mission
         <br><br>
 
     </div>
+
+    <div class="col-md-6">
+        <b>Nom de(s) contact(s) de la mission</b> <br>
+        {% if contacts %}
+        {% for contact in contacts %}
+        <ul>
+            <li>
+                {{ contact.fullName}}
+            </li>
+        </ul>
+        {% else %}
+        ...
+        {% endfor %}
+        {% endif %}
+    </div>
 </div>
 
 <a href="{{ path('app_mission')}}">Retour</a>
