@@ -31,11 +31,12 @@ Vous trouvez dans cette page les détails de l'agent
     </li>
 </ul>
 {% endfor %}
-<b>`
-    <p>Nationalité</p>
-</b>
-{{ agent.nationality}} <br><br>
 
+
+<b>
+    <p>Nationalté de l'agent</p>
+</b>
+{{ agent.country}} <br><br>
 
 <a href="{{ path('app_mission')}}">Retour</a>
 {% endblock %}

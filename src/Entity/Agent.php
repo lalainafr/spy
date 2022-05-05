@@ -45,11 +45,6 @@ class Agent
     private $brithDate;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $nationality;
-
-    /**
      * @ORM\ManyToMany(targetEntity=Mission::class, mappedBy="agent")
      */
     private $missions;
@@ -58,6 +53,12 @@ class Agent
      * @ORM\ManyToMany(targetEntity=Speciality::class, inversedBy="agents")
      */
     private $speciality;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Country::class, inversedBy="agents")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $country;
 
     public function __construct()
     {
@@ -102,18 +103,6 @@ class Agent
     public function setBrithDate(\DateTimeInterface $brithDate): self
     {
         $this->brithDate = $brithDate;
-
-        return $this;
-    }
-
-    public function getNationality(): ?string
-    {
-        return $this->nationality;
-    }
-
-    public function setNationality(string $nationality): self
-    {
-        $this->nationality = $nationality;
 
         return $this;
     }
@@ -165,6 +154,18 @@ class Agent
     public function removeSpeciality(Speciality $speciality): self
     {
         $this->speciality->removeElement($speciality);
+
+        return $this;
+    }
+
+    public function getCountry(): ?Country
+    {
+        return $this->country;
+    }
+
+    public function setCountry(?Country $country): self
+    {
+        $this->country = $country;
 
         return $this;
     }
