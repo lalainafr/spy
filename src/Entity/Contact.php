@@ -37,6 +37,12 @@ class Contact
      */
     private $codeName;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Country::class, inversedBy="contacts")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $country;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -98,5 +104,17 @@ class Contact
     public function __toString()
     {
         return $this->fullName();
+    }
+
+    public function getCountry(): ?Country
+    {
+        return $this->country;
+    }
+
+    public function setCountry(?Country $country): self
+    {
+        $this->country = $country;
+
+        return $this;
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Contact;
+use App\Entity\Country;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,6 +20,11 @@ class ContactType extends AbstractType
             ->add('lastName')
             ->add('codeName')
             ->add('birthDate', DateTimeType::class, ['widget' => 'single_text'])
+            ->add('country', EntityType::class, [
+                'class' => Country::class,
+                'placeholder' => 'Choisir une nationalité',
+                'label' => 'Nationalité'
+            ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Valider',
                 'attr' => [

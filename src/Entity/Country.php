@@ -44,12 +44,18 @@ class Country
      */
     private $targets;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Contact::class, mappedBy="country")
+     */
+    private $contacts;
+
     public function __construct()
     {
         $this->hideouts = new ArrayCollection();
         $this->missions = new ArrayCollection();
         $this->agents = new ArrayCollection();
         $this->targets = new ArrayCollection();
+        $this->contacts = new ArrayCollection();
     }
 
 
@@ -189,6 +195,36 @@ class Country
             // set the owning side to null (unless already changed)
             if ($target->getCountry() === $this) {
                 $target->setCountry(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Contact>
+     */
+    public function getContacts(): Collection
+    {
+        return $this->contacts;
+    }
+
+    public function addContact(Contact $contact): self
+    {
+        if (!$this->contacts->contains($contact)) {
+            $this->contacts[] = $contact;
+            $contact->setCountry($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContact(Contact $contact): self
+    {
+        if ($this->contacts->removeElement($contact)) {
+            // set the owning side to null (unless already changed)
+            if ($contact->getCountry() === $this) {
+                $contact->setCountry(null);
             }
         }
 
