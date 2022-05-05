@@ -60,6 +60,11 @@ class Mission
      */
     private $Hideout;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Country::class, inversedBy="missions")
+     */
+    private $country;
+
     public function __toString()
     {
         return $this->getTitle();
@@ -205,6 +210,18 @@ class Mission
     public function removeHideout(Hideout $hideout): self
     {
         $this->Hideout->removeElement($hideout);
+
+        return $this;
+    }
+
+    public function getCountry(): ?Country
+    {
+        return $this->country;
+    }
+
+    public function setCountry(?Country $country): self
+    {
+        $this->country = $country;
 
         return $this;
     }

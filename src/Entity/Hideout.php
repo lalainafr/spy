@@ -39,6 +39,11 @@ class Hideout
      */
     private $missions;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Country::class, inversedBy="hideouts")
+     */
+    private $country;
+
     public function __construct()
     {
         $this->missions = new ArrayCollection();
@@ -113,6 +118,18 @@ class Hideout
         if ($this->missions->removeElement($mission)) {
             $mission->removeHideout($this);
         }
+
+        return $this;
+    }
+
+    public function getCountry(): ?Country
+    {
+        return $this->country;
+    }
+
+    public function setCountry(?Country $country): self
+    {
+        $this->country = $country;
 
         return $this;
     }

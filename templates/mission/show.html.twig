@@ -8,90 +8,93 @@
 Vous trouvez dans cette page les détails de la mission
 
 <hr>
-<b>
-    <p>Titre de la mission</p>
-</b>
-{{ mission.title}} <br><br>
-<b>
-    <p>Description de la mission</p>
-</b>
-{{ mission.description }} <br><br>
 
-<b>
-    <p>Nom de(s) l'agent(s) concerné(s) par la mission</p>
-</b>
-{% for agent in agents %}
-<ul>
-    <li>
-        {{ agent.fullName}}
-    </li>
-</ul>
-{% endfor %}
+<div class="row">
+    <div class="col-md-12">
+        <b>Titre de la mission</b><br>
+        {{ mission.title}} <br><br>
+        <b>Description de la mission</b><br>
+        {{ mission.description }} <br><br>
+    </div>
+    <div class="col-md-6">
+        <b>Nom de(s) l'agent(s) concerné(s) par la mission</b> <br>
+        {% for agent in agents %}
+        <ul>
+            <li>
+                {{ agent.fullName}}
+            </li>
+        </ul>
+        {% endfor %}
+    </div>
+    <div class="col-md-6">
+        <b> Nom de(s) cible(s) </b><br>
+        {% if targets %}
+        {% for target in targets %}
+        <ul>
+            <li>
+                {{ target.fullName}}
+            </li>
+        </ul>
+        {% else %}
+        ...
+        {% endfor %}
+        {% endif %}
+    </div>
+    <div class="col-md-6">
+        <b>Nom de(s) planque(s)</b><br>
+        {% if hideouts %}
+        {% for hideout in hideouts %}
+        <ul>
+            <li>
+                {{ hideout.code}}
+                {{ hideout.address}}
+            </li>
+        </ul>
+        {% else %}
+        ...
+        {% endfor %}
+        {% endif %}
 
+    </div>
 
-<b>
-    <p>Nom de(s) cible(s)</p>
-</b>
-{% if targets %}
-{% for target in targets %}
-<ul>
-    <li>
-        {{ target.fullName}}
-    </li>
-</ul>
-{% else %}
-...
-{% endfor %}
-{% endif %}
+    <div class="col-md-6">
+        <b>Pays de la mission</b><br>
+        {% if country %}
+        {{ country.name}}
+        {% else %}
+        ...
+        {% endif %}
+    </div>
 
-<b>
-    <p>Nom de(s) planque(s)</p>
-</b>
-{% if hideouts %}
-{% for hideout in hideouts %}
-<ul>
-    <li>
-        {{ hideout.code}}
-        {{ hideout.address}}
-    </li>
-</ul>
-{% else %}
-...
-{% endfor %}
-{% endif %}
+    <div class="col-md-6">
+        <b>Specialité(s) demandée(s)</b><br>
+        {% if type %}
+        {{ speciality.name}} <br>
+        {% else %}
+        ...
+        {% endif %}
+    </div>
 
+    <div class="col-md-6">
+        <b>Type de la mission</b><br>
+        {% if type %}
+        {{ type.name}} <br>
+        {% else %}
+        ...
+        {% endif %}
+    </div>
 
+    <div class="col-md-6">
+        <b>Statut de la mission</b><br>
+        {% if status %}
+        {{ status.name}} <br>
+        {% else %}
+        ...
+        {% endif %}
+        <br><br>
 
-<b>
-    <p>Specialité(s) demandée(s)</p>
-</b>
-
-{% if type %}
-{{ speciality.name}} <br>
-{% else %}
-...
-{% endif %}
-
-
-<b>
-    <p>Type de la mission</p>
-</b>
-{% if type %}
-{{ type.name}} <br>
-{% else %}
-...
-{% endif %}
-
-<b>
-    <p>Statut de la mission</p>
-</b>
-{% if status %}
-{{ status.name}} <br>
-{% else %}
-...
-{% endif %}
-
-<br><br>
+    </div>
+</div>
 
 <a href="{{ path('app_mission')}}">Retour</a>
 {% endblock %}

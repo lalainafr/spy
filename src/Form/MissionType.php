@@ -4,9 +4,10 @@ namespace App\Form;
 
 use App\Entity\Type;
 use App\Entity\Agent;
-use App\Entity\Hideout;
 use App\Entity\Status;
 use App\Entity\Target;
+use App\Entity\Country;
+use App\Entity\Hideout;
 use App\Entity\Mission;
 use App\Entity\Speciality;
 use Symfony\Component\Form\FormEvent;
@@ -34,7 +35,7 @@ class MissionType extends AbstractType
                 'expanded' => true
             ])
             ->add('speciality', EntityType::class, [
-                'label' => 'Specialité',
+                'label' => 'Specialité de la mission',
                 'placeholder' => 'Choisir une spécialité',
                 'choice_label' => 'name',
                 'class' => Speciality::class,
@@ -65,6 +66,12 @@ class MissionType extends AbstractType
                 'placeholder' => 'Choisir un statut de mission',
                 'choice_label' => 'name',
                 'class' => Status::class,
+            ])
+            ->add('country', EntityType::class, [
+                'label' => 'Pays de la mission',
+                'placeholder' => 'Choisir un Pays pour la mission',
+                'choice_label' => 'name',
+                'class' => Country::class,
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Valider',

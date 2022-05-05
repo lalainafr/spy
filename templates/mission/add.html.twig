@@ -8,7 +8,26 @@
 Vous pouvez ajouter des missions dans cette page
 
 <hr>
-
-{{ form(form)}}
+{{ form_start(form)}}
+<div class="row">
+    <div class="col-md-12">
+        {{ form_row(form.title)}}
+        {{ form_row(form.description)}}
+    </div>
+    <div class="col-md-6">
+        {{ form_row(form.agent)}}
+        {{ form_row(form.target)}}
+        {{ form_row(form.hideout)}}
+    </div>
+    <div class="col-md-3">
+        {{ form_row(form.country)}}
+        {{ form_row(form.speciality)}}
+        {{ form_row(form.type)}}
+        {{ form_row(form.status)}}
+    </div>
+</div>
+<br>
+{{ form_row(form.submit)}}
+{{ form_end(form)}}
 
 {% endblock %}
