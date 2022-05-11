@@ -3,7 +3,7 @@
 {% block title %}Détail d'une mission{% endblock %}
 
 {% block body %}
-<h1>Détail de la mission - <b>{{ mission.title | upper }}</b>...</h1>
+<h1>Détail de la mission - <span class="text-info">{{ mission.title | upper }}...</span></h1>
 
 Vous trouvez dans cette page les détails de la mission
 
@@ -18,7 +18,7 @@ Vous trouvez dans cette page les détails de la mission
     </div>
     <div class="col-md-6">
         <b>Nom de(s) l'agent(s) concerné(s) par la mission</b> <br>
-        {% for agent in agents %}
+        {% for agent in mission.agent %}
         <ul>
             <li>
                 {{ agent.fullName}}
@@ -28,8 +28,8 @@ Vous trouvez dans cette page les détails de la mission
     </div>
     <div class="col-md-6">
         <b> Nom de(s) cible(s) </b><br>
-        {% if targets %}
-        {% for target in targets %}
+        {% if mission.target %}
+        {% for target in mission.target %}
         <ul>
             <li>
                 {{ target.fullName}}
@@ -42,8 +42,8 @@ Vous trouvez dans cette page les détails de la mission
     </div>
     <div class="col-md-6">
         <b>Nom de(s) planque(s)</b><br>
-        {% if hideouts %}
-        {% for hideout in hideouts %}
+        {% if mission.hideout %}
+        {% for hideout in mission.hideout %}
         <ul>
             <li>
                 {{ hideout.code}}
@@ -59,8 +59,8 @@ Vous trouvez dans cette page les détails de la mission
 
     <div class="col-md-6">
         <b>Pays de la mission</b><br>
-        {% if country %}
-        {{ country.name}}
+        {% if mission.country %}
+        {{ mission.country.name}}
         {% else %}
         ...
         {% endif %}
@@ -68,8 +68,8 @@ Vous trouvez dans cette page les détails de la mission
 
     <div class="col-md-6">
         <b>Specialité(s) demandée(s)</b><br>
-        {% if type %}
-        {{ speciality.name}} <br>
+        {% if mission.speciality %}
+        {{ mission.speciality.name}} <br>
         {% else %}
         ...
         {% endif %}
@@ -77,8 +77,8 @@ Vous trouvez dans cette page les détails de la mission
 
     <div class="col-md-6">
         <b>Type de la mission</b><br>
-        {% if type %}
-        {{ type.name}} <br>
+        {% if mission.type %}
+        {{ mission.type.name}} <br>
         {% else %}
         ...
         {% endif %}
@@ -86,8 +86,8 @@ Vous trouvez dans cette page les détails de la mission
 
     <div class="col-md-6">
         <b>Statut de la mission</b><br>
-        {% if status %}
-        {{ status.name}} <br>
+        {% if mission.status %}
+        {{ mission.status.name}} <br>
         {% else %}
         ...
         {% endif %}
@@ -97,8 +97,8 @@ Vous trouvez dans cette page les détails de la mission
 
     <div class="col-md-6">
         <b>Nom de(s) contact(s) de la mission</b> <br>
-        {% if contacts %}
-        {% for contact in contacts %}
+        {% if mission.contact %}
+        {% for contact in mission.contact %}
         <ul>
             <li>
                 {{ contact.fullName}}

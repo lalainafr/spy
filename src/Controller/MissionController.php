@@ -19,7 +19,6 @@ use Symfony\Component\Form\FormEvents;
 
 class MissionController extends AbstractController
 {
-
     /**
      * @Route("/", name="app_mission")
      */
@@ -55,27 +54,9 @@ class MissionController extends AbstractController
     public function show($id, MissionRepository $missionRepository): Response
     {
         $mission = $missionRepository->findOneById($id);
-        $agents = $mission->getAgent();
-        $speciality = $mission->getSpeciality();
-        $targets = $mission->getTarget();
-        $type = $mission->getType();
-        $status = $mission->getStatus();
-        $hideouts = $mission->getHideout();
-        $country = $mission->getCountry();
-        $contacts = $mission->getContact();
-
 
         return $this->render('mission/show.html.twig', [
             'mission' => $mission,
-            'agents' => $agents,
-            'speciality' => $speciality,
-            'targets' => $targets,
-            'type' => $type,
-            'status' => $status,
-            'hideouts' =>  $hideouts,
-            'country' => $country,
-            'contacts' => $contacts
-
         ]);
     }
     /**

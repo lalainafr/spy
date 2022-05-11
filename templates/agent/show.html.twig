@@ -3,7 +3,9 @@
 {% block title %}Détail de l'agent{% endblock %}
 
 {% block body %}
-<h1>Détail de l'agent - <b>{{ agent.firstName | upper }}</b>...</h1>
+<h1>Détail de l'agent - <span class="text-info">{{ agent.fullName }}...</span></h1>
+
+
 
 Vous trouvez dans cette page les détails de l'agent
 
