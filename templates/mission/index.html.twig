@@ -4,34 +4,21 @@
 
 {% block body %}
 <div>
-    <h1>Liste des missions</h1>
+    <h1 class="text-center text-muted">Liste des Missions </h1>
+    <br>
+    <hr>
+    <br>
 
-    Vous trouverez la liste des missions dans cette page
+    <div class="row">
+        <div class="col-md-3">
+            Search Form ...
+        </div>
+        <div class="col-md-9">
+            {% include "mission/_list.html.twig" %}
+        </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Titre la la mission</th>
-                <th scope="col">Déscription de la mission</th>
 
-            </tr>
-        </thead>
-        {% for mission in missionList %}
-        <tbody>
-            <tr>
-
-                <td>{{ mission.title}}</td>
-                <td>{{ mission.description}}</td>
-                <td>
-                    <a href="{{ path('app_mission_show', {'id': mission.id})}}">Détail</a>
-                </td>
-                <td>
-                    <a href="{{ path('app_mission_edit', {'id': mission.id})}}">Modifier</a>
-                </td>
-            </tr>
-        </tbody>
-        {% endfor %}
-        </tabl>
+    </div>
 </div>
 
 {% endblock %}

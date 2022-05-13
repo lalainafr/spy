@@ -1,0 +1,30 @@
+Vous trouverez la liste des missions dans cette page
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Titre la la mission</th>
+            <th scope="col">Déscription </th>
+            <th scope="col">Pays </th>
+            <th scope="col">Type </th>
+            <th scope="col">Action</th>
+
+        </tr>
+    </thead>
+    {% for mission in missionList %}
+    <tbody>
+        <tr>
+            <td>{{ mission.title}}</td>
+            <td>{{ mission.description}}</td>
+            <td>{{ mission.country}}</td>
+            <td>{{ mission.type}}</td>
+            <td>
+                <a href="{{ path('app_mission_show', {'id': mission.id})}}">Détail</a>
+            </td>
+            <td>
+                <a href="{{ path('app_mission_edit', {'id': mission.id})}}">Modifier</a>
+            </td>
+        </tr>
+    </tbody>
+    {% endfor %}
+    </tabl>
