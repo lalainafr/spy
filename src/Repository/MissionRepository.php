@@ -8,6 +8,8 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @method Mission|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,9 +19,17 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class MissionRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+
+    /**
+     * @var PaginatorInterface
+     */
+
+    private $paginator;
+
+    public function __construct(ManagerRegistry $registry, PaginatorInterface $paginator)
     {
         parent::__construct($registry, Mission::class);
+        $this->paginator = $paginator;
     }
 
     /**
@@ -52,7 +62,7 @@ class MissionRepository extends ServiceEntityRepository
      * @return Mission[] 
      */
 
-    public function findSearch(Search $search): array
+    public function findSearch(Search $search): PaginationInterface
     {
         $query = $this
             ->createQueryBuilder('m')
@@ -82,9 +92,12 @@ class MissionRepository extends ServiceEntityRepository
             }
         }
 
-        return $query
-            ->getQuery()
-            ->getResult();
+        $query = $query->getQuery();
+        return $this->paginator->paginate(
+            $query,
+            $search->page,
+            3
+        );
     }
 
 

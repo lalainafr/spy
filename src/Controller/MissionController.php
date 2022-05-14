@@ -28,6 +28,7 @@ class MissionController extends AbstractController
     {
 
         $data = new Search();
+        $data->page = $request->get('page', 1);
         $form = $this->createForm(SearchType::class, $data);
         $form->handleRequest($request);
         $mission = $missionRepository->findSearch($data);

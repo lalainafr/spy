@@ -8,6 +8,12 @@ class Search
      * @var string
      */
 
+    public $page = 1;
+
+    /**
+     * @var string
+     */
+
     public $q = '';
 
     /**

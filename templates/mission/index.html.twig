@@ -8,17 +8,19 @@
     <br>
     <hr>
     <br>
-
     <div class="row">
         <div class="col-md-2 searchArea">
             {% include "mission/_filter.html.twig" %}
         </div>
-        <div class="col-md-10 contentArea">
+        <div class="col-md-10 ">
             {% include "mission/_list.html.twig" %}
+            <div>
+                {{ knp_pagination_render(missionList,
+                '@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig')}}
+            </div>
         </div>
-
-
     </div>
 </div>
+
 
 {% endblock %}
