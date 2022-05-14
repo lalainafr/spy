@@ -1,0 +1,14 @@
+<h2>Filtre</h2>
+{{ form_start(form)}}
+
+{{ form_row(form.q)}}
+
+<h5>Pays</h5>
+{{ form_row(form.country) }}
+<br>
+<h5>Type</h5>
+{{ form_row(form.type) }}
+
+<button type="submit" class="btn btn-primary">Valider</button>
+
+{{form_end(form)}}

@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Data\Search;
 use App\Entity\Mission;
 use App\Form\MissionType;
 use App\Form\MissionChoiceType;
+use App\Form\SearchType;
 use App\Repository\MissionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -22,12 +24,16 @@ class MissionController extends AbstractController
     /**
      * @Route("/", name="app_mission")
      */
-    public function index(MissionRepository $missionRepository): Response
+    public function index(MissionRepository $missionRepository, Request $request): Response
     {
-        $mission = $missionRepository->findAll();
 
+        $data = new Search();
+        $form = $this->createForm(SearchType::class, $data);
+        $form->handleRequest($request);
+        $mission = $missionRepository->findSearch($data);
         return $this->render('mission/index.html.twig', [
-            'missionList' => $mission
+            'missionList' => $mission,
+            'form' => $form->createView()
         ]);
     }
 

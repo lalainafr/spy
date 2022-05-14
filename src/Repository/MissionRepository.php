@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Data\Search;
 use App\Entity\Mission;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
@@ -45,22 +46,47 @@ class MissionRepository extends ServiceEntityRepository
         }
     }
 
-    // /**
-    //  * @return Mission[] Returns an array of Mission objects
-    //  */
-    /*
-    public function findByExampleField($value)
+
+    /**
+     * Récupére les missions en lien avec la recherche
+     * @return Mission[] 
+     */
+
+    public function findSearch(Search $search): array
     {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('m.id', 'ASC')
-            ->setMaxResults(10)
+        $query = $this
+            ->createQueryBuilder('m')
+            ->select('t', 'm')
+            ->join('m.type', 't')
+
+            ->select('c', 'm')
+            ->join('m.country', 'c');
+
+        if (!empty($search->q)) {
+            $query = $query
+                ->andWhere('m.title LIKE :q')
+                ->setParameter('q', "%{$search->q}%");
+        }
+
+        if (!empty($search->country)) { {
+                $query = $query
+                    ->andWhere('c.id IN (:country)')
+                    ->setParameter('country', $search->country);
+            }
+        }
+
+        if (!empty($search->type)) { {
+                $query = $query
+                    ->andWhere('t.id IN (:type)')
+                    ->setParameter('type', $search->type);
+            }
+        }
+
+        return $query
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?Mission
