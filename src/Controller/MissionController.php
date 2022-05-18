@@ -18,6 +18,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class MissionController extends AbstractController
 {
@@ -32,6 +33,15 @@ class MissionController extends AbstractController
         $form = $this->createForm(SearchType::class, $data);
         $form->handleRequest($request);
         $mission = $missionRepository->findSearch($data);
+        if ($request->get('ajax')) {
+            return new JsonResponse([
+                'content' =>  $this->renderView('mission/_list.html.twig', [
+                    'missionList' => $mission,
+                    'form' => $form->createView()
+                ])
+            ]);
+        }
+
         return $this->render('mission/index.html.twig', [
             'missionList' => $mission,
             'form' => $form->createView()
