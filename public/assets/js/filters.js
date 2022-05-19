@@ -21,8 +21,10 @@ window.onload = () => {
             }).then(
                 response => response.json()
             ).then(data => {
-                console.log(data.content);
-            })
+                const content = document.getElementById('content');
+                content.innerHTML = data.content;
+                history.pushState({}, null, url.pathname + '?' + Params.toString());
+            }).catch(e => alert(e));
         });
     })
 }
